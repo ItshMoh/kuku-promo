@@ -1,0 +1,47 @@
+EPISODE NUMBER: Episode 1
+EPISODE LOGLINE: A courier must sign away her inheritance before the bell rings to save her brother.
+CONTINUITY NOTES: Synthetic example written for this prototype; not Kuku content.
+
+--- SCRIPT START ---
+SCENE 01
+SCENE HEADING: INT. CLOCK TOWER - NIGHT
+SCENE START: 00:00.00
+SCENE END: 01:00.00
+
+**CAMERA:**
+Start: (00:00.00) | End: (00:05.00)
+A man holds a deed above a flame while a young courier reaches toward it.
+
+**COLLECTOR (Threatening):**
+Start: (00:00.00) | End: (00:02.00)
+"Return the deed, or your brother dies."
+
+**ACTION:**
+Start: (00:02.00) | End: (00:05.00)
+Maya reaches for the deed, then stops when the collector raises a knife.
+
+**MAYA (Pleading):**
+Start: (00:05.00) | End: (00:10.00)
+"He signed it to protect me. It is all we have left."
+
+**CAMERA:**
+Start: (00:10.00) | End: (00:20.00)
+The clock's minute hand moves toward midnight while the collector watches silently.
+
+**COLLECTOR (Insistent):**
+Start: (00:20.00) | End: (00:25.00)
+"Sign here before the bell rings. Your brother is waiting downstairs."
+
+**ACTION:**
+Start: (00:25.00) | End: (00:35.00)
+Maya holds the pen above the signature line, her hand shaking as the bell rope moves.
+
+**COLLECTOR (Warning):**
+Start: (00:35.00) | End: (00:40.00)
+"Once you sign, you cannot take it back."
+
+**CAMERA:**
+Start: (00:40.00) | End: (01:00.00)
+The bell begins to swing. Maya looks from the deed to the locked door below.
+
+--- SCRIPT END ---

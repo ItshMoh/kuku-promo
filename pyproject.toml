@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kuku-promo-finder"
+version = "0.1.0"
+description = "Traceable, episode-only promo selection and editorial review"
+requires-python = ">=3.11"
+dependencies = ["openai>=2.0,<3", "pydantic>=2.8,<3", "python-dotenv>=1.0,<2", "streamlit>=1.40,<2"]
+
+[project.scripts]
+kuku-promos = "promo_finder.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["promo_finder*"]
+
+[tool.setuptools.package-data]
+promo_finder = ["prompts/*.txt"]
