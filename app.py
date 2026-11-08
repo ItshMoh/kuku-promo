@@ -11,7 +11,7 @@ from promo_finder.models import Candidate, Episode, WEIGHTS
 from promo_finder.parser import load_folder, timestamp
 from promo_finder.pipeline import run_pipeline
 from promo_finder.provider import OpenAIProvider
-from promo_finder.reporting import comparison_rows, csv_text, export_report, load_results, load_reviews
+from promo_finder.reporting import comparison_rows, csv_text, export_report, load_results, load_reviews, posting_order
 from promo_finder.storage import read_json, write_json
 from promo_finder.validation import assemble_clip
 
@@ -31,7 +31,8 @@ with st.sidebar:
     st.header("Workspace")
     folders = sorted({p.parent for p in (ROOT / "runs").glob("*/inventory.json")}, key=lambda p: str(p))
     options = ["Source scripts only"] + [str(p.relative_to(ROOT)) for p in folders]
-    chosen = st.selectbox("Saved run", options)
+    preferred_run = next((r for r in ("runs/full", "runs/demo") if r in options), "Source scripts only")
+    chosen = st.selectbox("Saved run", options, index=options.index(preferred_run))
     run = ROOT / chosen if chosen != options[0] else None
     st.caption("Saved results open without an API call.")
     show_judge = st.checkbox("Show model scores and explanations", value=False)
@@ -83,7 +84,9 @@ with episode_tab:
     if not sources:
         st.write("Load a script folder or upload scripts in Prepare & run.")
     else:
-        episode = st.selectbox("Episode", sources, format_func=lambda e: f"Episode {e.number:02d} · {timestamp(e.duration_cs)}")
+        first_processed = next((i for i, e in enumerate(sources) if e.id in by_episode), 0)
+        episode = st.selectbox("Episode", sources, index=first_processed,
+                               format_func=lambda e: f"Episode {e.number:02d} · {timestamp(e.duration_cs)}")
         result = by_episode.get(episode.id)
         if show_judge and result:
             st.caption(f"Processing status: {result['status']}")
@@ -157,6 +160,8 @@ with ranking_tab:
         st.write("Comparisons will appear after a saved model run. No scores have been fabricated.")
     else:
         st.caption("Comparing episode promos does not combine episodes into a series promo.")
+        st.caption("Posting priority follows score, then cliffhanger, newcomer clarity, and opening impact. "
+                   "Equal scores remain tied; episode number earns no preference. Human-rejected cuts are excluded.")
         status_filter = st.multiselect("Eligibility", ["qualified", "needs_review", "rejected", "api_failed"],
                                        default=["qualified", "needs_review"])
         type_filter = st.multiselect("Clip type", ["continuous", "joined"], default=["continuous", "joined"])
@@ -164,7 +169,10 @@ with ranking_tab:
         columns = ["id", "episode", "type", "duration_seconds", "segments", "human_review"]
         if show_judge:
             columns = ["global_rank", "episode_rank", "score", "status", "title"] + columns
-            filtered = sorted(filtered, key=lambda r: r["score"] if r["score"] is not None else -1, reverse=True)
+            priorities = {r["id"]: r["posting_priority"] for r in posting_order(rows)}
+            columns = ["posting_priority"] + columns
+            filtered = [{**r, "posting_priority": priorities.get(r["id"])} for r in filtered]
+            filtered = sorted(filtered, key=lambda r: (r["posting_priority"] or 100000, -(r["score"] or 0)))
         else:
             st.caption("Scores are hidden; candidate order follows source episodes for independent review.")
         st.dataframe([{k: r[k] for k in columns} for r in filtered], hide_index=True)
@@ -172,6 +180,12 @@ with ranking_tab:
             export_report(run)
             st.success("JSON, CSV, coverage and Markdown report refreshed.")
         st.download_button("Download comparisons CSV", csv_text(rows), file_name="episode-promos.csv", mime="text/csv")
+        st.download_button("Download global posting order", csv_text(posting_order(rows)),
+                           file_name="global-posting-order.csv", mime="text/csv")
+        coverage = [{"episode": e.number, "status": by_episode.get(e.id, {}).get("status", "not_processed"),
+                     "candidates": len(by_episode.get(e.id, {}).get("candidates", []))} for e in sources]
+        with st.expander("Every episode: coverage and processing status"):
+            st.dataframe(coverage, hide_index=True)
         if (run / "summary.json").exists():
             with st.expander("Run usage"):
                 st.json(read_json(run / "summary.json").get("usage", {}))
@@ -179,8 +193,26 @@ with ranking_tab:
 with run_tab:
     st.subheader("Prepare an episode-only run")
     st.caption("This button sends the selected scripts to your configured OpenAI API. Reviewing results does not.")
-    input_folder = st.text_input("Script folder", value=str(DEFAULT_INPUT if DEFAULT_INPUT.exists() else ROOT / "examples"))
-    uploaded = st.file_uploader("Or upload timestamped episode .txt files", type=["txt"], accept_multiple_files=True)
+    input_mode = st.radio("Script input", ["Folder", "Upload", "Paste"], horizontal=True)
+    input_folder = str(DEFAULT_INPUT if DEFAULT_INPUT.exists() else ROOT / "examples")
+    uploaded = []
+    if input_mode == "Folder":
+        input_folder = st.text_input("Script folder", value=input_folder)
+    elif input_mode == "Upload":
+        uploaded = st.file_uploader("Upload timestamped episode .txt files", type=["txt"], accept_multiple_files=True)
+        if not uploaded:
+            input_folder = str(ROOT / "runs" / "no-upload-selected")
+    else:
+        pasted = st.text_area("Paste one timestamped episode script", height=220,
+                              placeholder="EPISODE NUMBER: Episode 1\n... scenes, camera/action/dialogue and Start/End timestamps ...")
+        if pasted.strip():
+            paste_hash = hashlib.sha256(pasted.encode()).hexdigest()[:16]
+            paste_folder = ROOT / "runs" / "pasted" / paste_hash
+            paste_folder.mkdir(parents=True, exist_ok=True)
+            (paste_folder / "episode.txt").write_text(pasted, encoding="utf-8")
+            input_folder = str(paste_folder)
+        else:
+            input_folder = str(ROOT / "runs" / "no-paste-selected")
     if uploaded:
         digest = hashlib.sha256(b"".join(f.name.encode() + f.getvalue() for f in uploaded)).hexdigest()[:12]
         upload_folder = ROOT / "runs" / "uploads" / digest
@@ -203,7 +235,7 @@ with run_tab:
     preferred = [n for n in [3, 6, 12, 23, 45, 50] if n in numbers]
     chosen_numbers = st.multiselect("Episodes to process", numbers, default=preferred or numbers[:3])
     max_candidates = st.number_input("Maximum candidates per episode", min_value=1, max_value=6, value=3)
-    output_folder = st.text_input("Output folder", value=str(ROOT / "runs" / "pilot"))
+    output_folder = st.text_input("Output folder", value=str(ROOT / "runs" / "new-run"))
     has_key = bool(os.getenv("OPENAI_API_KEY"))
     if not has_key:
         st.warning("Live runs need OPENAI_API_KEY in the project's local .env file or environment. Do not paste it into chat.")

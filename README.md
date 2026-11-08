@@ -62,7 +62,7 @@ python -m promo_finder report runs/pilot-v2
 
 ## Review and outputs
 
-The app opens in source-only mode when no run is selected. Choose a saved run in the sidebar. Model scores and explanations are hidden by default so you can record a first impression independently. Each candidate exposes its first three playback seconds, full assembled source timeline, source line references, validation issues, and a human review form. Select **Show model scores and explanations** to inspect Sol's six scores, eligibility assessments, and evidence.
+The app opens the full-pack run when available, otherwise the bundled synthetic demo or source-only mode. Choose a saved run in the sidebar. Model scores and explanations are hidden by default so you can record a first impression independently. Each candidate exposes its first three playback seconds, full assembled source timeline, source line references, validation issues, and a human review form. Select **Show model scores and explanations** to inspect Sol's six scores, eligibility assessments, and evidence. [Editor workflow](docs/USER_GUIDE.md) explains folder, upload and paste input.
 
 `runs/<name>/` stores:
 
@@ -73,7 +73,9 @@ The app opens in source-only mode when no run is selected. Choose a saved run in
 - `reviews/`: human decisions and explanations, separate from original outputs.
 - `exports/`: candidate JSON/CSV, episode coverage JSON/CSV, and a Markdown report.
 
-All source-bearing outputs remain local and ignored by Git. Share real-input raw outputs only through the assignment's intended submission channel. The synthetic fixture can be shared with the runnable code.
+The complete run also exports `global_ranking.csv` (all qualifying candidates in posting-priority order), `episode_posting_order.csv` (one best qualifying cut per episode), and `episode_recommendations.csv` (a result for every episode, including weak or uncertain options). Score ties remain ties; suggested queue order breaks ties by cliffhanger, newcomer clarity, opening impact, then stable ID. Episode number earns no preference. Human-rejected candidates are excluded from posting queues.
+
+All source-bearing Kuku outputs remain local and ignored by Git. Share real-input raw outputs only through the assignment's intended submission channel. The synthetic fixture and its cached real model run can be shared with the runnable code. The source archive includes that synthetic demo; the separate confidential raw-output archive can be extracted into the project to populate `runs/full` for API-free review.
 
 The coverage export includes every parsed episode, even when not processed, no candidate is returned, every selection fails, or an API call fails. A best available candidate can be reported as rejected or needing review; it is not promoted to a qualifying selection. Global ranking compares episode-only promos and does not assemble a series promo. Equal global scores share rank. Human approval/rejection never silently rewrites model scores.
 
@@ -99,4 +101,4 @@ Tests exercise episode isolation, parallel timing, dialogue boundaries, missing 
 
 Official references: [Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), [Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses).
 
-If a running development server reports a stale import after source changes, restart it with the same Streamlit command. The project enables polling to reload source modules; saved runs remain on disk. The current verified six-episode pilot is `runs/pilot-v2`.
+If a running development server reports a stale import after source changes, restart it with the same Streamlit command. The project enables polling to reload source modules; saved runs remain on disk. The complete verified 50-episode result set is `runs/full`; the earlier pilot is retained in `runs/pilot-v2`.

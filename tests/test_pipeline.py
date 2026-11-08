@@ -9,7 +9,7 @@ from promo_finder.models import Assessment, Candidate, Fidelity, Judgement, Scor
 from promo_finder.parser import load_folder, parse_episode, parse_time, timestamp
 from promo_finder.pipeline import run_pipeline
 from promo_finder.provider import ModelCallError, OpenAIProvider
-from promo_finder.reporting import export_report
+from promo_finder.reporting import export_report, posting_order
 from promo_finder.validation import assemble_clip, eligibility, judgement_errors, validate_candidate
 from promo_finder import cli
 
@@ -151,6 +151,15 @@ class SourceTests(unittest.TestCase):
 
 
 class WorkflowTests(unittest.TestCase):
+    def test_global_priority_uses_quality_not_episode_order_and_excludes_rejections(self):
+        def row(e, score, ending=3, human="unreviewed", status="qualified"):
+            return {"id":f"ep-{e:03d}", "episode":e, "score":score, "ending_cliffhanger":ending,
+                    "newcomer_clarity":3,"opening_impact":3,"human_review":human,"status":status}
+        ranked=posting_order([row(1,60),row(23,80),row(45,80,4),row(50,99,human="reject"),
+                              row(2,100,status="needs_review")])
+        self.assertEqual([r["episode"] for r in ranked],[45,23,1])
+        self.assertEqual([r["posting_priority"] for r in ranked],[1,2,3])
+
     def test_key_added_after_blank_template_is_loaded_without_replacing_existing_key(self):
         with tempfile.TemporaryDirectory() as folder:
             base = Path(folder)
