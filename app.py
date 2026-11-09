@@ -18,16 +18,113 @@ from promo_finder.validation import assemble_clip
 load_environment()
 st.set_page_config(page_title="Kuku · Promo Finder", page_icon="🎬", layout="wide")
 st.markdown("""<style>
-.block-container {padding-top:2rem;max-width:1380px}
-[data-testid="stMetric"] {border:1px solid #dddddd44;border-radius:12px;padding:14px}
-.eyebrow {font-size:12px;font-weight:700;letter-spacing:2px;color:#ef7449}
+:root {
+    --paper: #f3f0e7;
+    --surface: #fcfaf4;
+    --ink: #203c32;
+    --muted: #656b5e;
+    --line: #d8d8ca;
+    --clay: #ab4d30;
+}
+[data-testid="stAppViewContainer"] {background: var(--paper)}
+[data-testid="stHeader"] {background: #f3f0e7ed}
+.block-container {padding-top:4.5rem;padding-bottom:4rem;max-width:1380px}
+.studio-masthead {
+    display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    border-bottom:1px solid var(--line);padding-bottom:1.1rem;margin-bottom:1.7rem;
+}
+.studio-brand {display:flex;align-items:center;gap:.7rem}
+.studio-monogram {
+    display:grid;place-items:center;width:34px;height:34px;background:var(--ink);
+    color:var(--surface);font-family:Georgia,serif;font-size:25px;border-radius:3px;
+}
+.eyebrow {font-size:11px;font-weight:700;letter-spacing:2px;color:var(--ink)}
+.studio-edition {font-size:10px;letter-spacing:1.5px;color:var(--muted);text-align:right}
+[data-testid="stMain"] h1 {
+    font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.4rem,4.5vw,4rem);
+    font-weight:400;line-height:1.08;letter-spacing:-2px;color:var(--ink);
+    max-width:1040px;padding-top:0;padding-bottom:.8rem;
+}
+[data-testid="stMain"] h2, [data-testid="stMain"] h3 {color:var(--ink);letter-spacing:-.4px}
+[data-testid="stMain"] [data-testid="stCaptionContainer"] {color:var(--muted)}
+.scope-note {
+    display:flex;align-items:baseline;gap:.85rem;flex-wrap:wrap;padding:.8rem 1rem;
+    margin:.8rem 0 1.6rem;border-left:3px solid var(--clay);background:#eae7db;
+    color:#4f584b;font-size:.88rem;line-height:1.6;
+}
+.scope-note strong {color:var(--ink);font-weight:650;white-space:nowrap}
+[data-testid="stMetric"] {
+    min-height:126px;background:var(--surface);border:1px solid var(--line);
+    border-top:3px solid #9b9e76;border-radius:5px;padding:18px 22px;
+}
+[data-testid="stMetricLabel"] {color:var(--muted);font-size:.78rem;letter-spacing:.3px}
+[data-testid="stMetricValue"] {
+    font-family:Georgia,"Times New Roman",serif;color:var(--ink);font-size:2.7rem;
+    font-weight:400;line-height:1.25;
+}
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child [data-testid="stMetric"] {
+    background:var(--ink);border-color:var(--ink);
+}
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child [data-testid="stMetricLabel"] {color:#cbd4bb}
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child [data-testid="stMetricValue"] {color:#f8efd9}
+[data-testid="stMain"] [data-baseweb="tab-list"] {
+    gap:1.5rem;background:transparent;border-bottom:1px solid var(--line);margin-top:.8rem;
+}
+[data-testid="stMain"] [data-baseweb="tab"] {
+    padding:.7rem .1rem;font-weight:550;color:var(--muted);height:auto;
+}
+[data-testid="stMain"] [data-baseweb="tab"][aria-selected="true"] {color:var(--ink);font-weight:700}
+[data-testid="stMain"] [data-baseweb="tab-highlight"] {background:var(--clay);height:3px}
+[data-testid="stMain"] [data-baseweb="tab-panel"] {padding-top:1.5rem}
+[data-testid="stWidgetLabel"] p {font-size:.85rem;font-weight:600}
+[data-testid="stCode"] {
+    border:1px solid var(--line);border-left:3px solid #9b9e76;border-radius:4px;
+}
+[data-testid="stCode"] pre {line-height:1.75;font-size:.82rem}
+[data-testid="stForm"] {background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:1.4rem}
+[data-testid="stExpander"] {background:var(--surface);border-radius:5px}
+.stButton button, .stDownloadButton button, [data-testid="stFormSubmitButton"] button {
+    font-weight:600;padding:.55rem 1rem;transition:background-color .15s,border-color .15s;
+}
+.stButton button:hover, .stDownloadButton button:hover {border-color:var(--clay)}
+[data-testid="stSidebar"] {border-right:1px solid #314e40}
+[data-testid="stSidebarContent"] {padding-top:1.5rem}
+[data-testid="stSidebar"] h2 {font-family:Georgia,serif;font-weight:400;font-size:1.8rem}
+[data-testid="stSidebar"] [data-testid="stCaptionContainer"] {color:#c2cdb9}
+[data-testid="stSidebar"] hr {border-color:#49604d}
+.sidebar-kicker {color:#d8b77c;font-size:10px;letter-spacing:2px;font-weight:700;margin-bottom:.7rem}
+.sidebar-rules {margin:.8rem 0 1rem;padding:0;list-style:none}
+.sidebar-rules li {
+    display:flex;gap:.8rem;padding:.65rem 0;border-bottom:1px solid #3c5547;
+    font-size:.85rem;color:#eff0df;
+}
+.sidebar-rules span {color:#d8b77c;font-family:Georgia,serif;font-size:1rem;min-width:22px}
+@media (max-width:760px) {
+    .block-container {padding-top:4.5rem}
+    .studio-edition {display:none}
+    [data-testid="stMain"] h1 {letter-spacing:-1px}
+    [data-testid="stMetric"] {padding:14px;min-height:105px}
+    [data-testid="stMetricValue"] {font-size:2rem}
+    [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {flex-wrap:wrap}
+    [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"] {
+        flex:1 1 calc(50% - .5rem);min-width:0;
+    }
+    [data-testid="stMain"] [data-baseweb="tab-list"] {gap:1rem}
+    [data-testid="stMain"] [data-baseweb="tab"] {font-size:.85rem}
+}
 </style>""", unsafe_allow_html=True)
-st.markdown('<div class="eyebrow">KUKU · EDITORIAL WORKSPACE</div>', unsafe_allow_html=True)
+st.markdown('''<div class="studio-masthead">
+    <div class="studio-brand"><span class="studio-monogram">k</span>
+    <span class="eyebrow">KUKU / PROMO STUDIO</span></div>
+    <span class="studio-edition">THE EDITORIAL WORKSPACE</span>
+</div>''', unsafe_allow_html=True)
 st.title("Find the moment. Leave a question.")
-st.caption("Episode-only promos · Luna selects · Sol judges · You review")
-st.info("Each promo uses one episode. Join moments within that episode; cross-episode series promos come later.")
+st.caption("Turn episode scripts into a shortlist worth watching. Find the hook, review the cut, choose what goes first.")
+st.markdown('''<div class="scope-note"><strong>One episode. A stronger cut.</strong>
+    <span>Build a continuous promo or join moments from the same episode.</span></div>''', unsafe_allow_html=True)
 
 with st.sidebar:
+    st.markdown('<div class="sidebar-kicker">YOUR EDITING DESK</div>', unsafe_allow_html=True)
     st.header("Workspace")
     folders = sorted({p.parent for p in (ROOT / "runs").glob("*/inventory.json")}, key=lambda p: str(p))
     options = ["Source scripts only"] + [str(p.relative_to(ROOT)) for p in folders]
@@ -39,7 +136,12 @@ with st.sidebar:
     st.caption("Leave scores hidden to record your first impression independently.")
     st.divider()
     st.markdown("**Selection rules**")
-    st.write("20–60 seconds · hook in 3 seconds · understandable stakes · unresolved ending")
+    st.markdown('''<ul class="sidebar-rules">
+        <li><span>01</span>20–60 seconds per promo</li>
+        <li><span>02</span>A hook in the first 3 seconds</li>
+        <li><span>03</span>Clear characters and stakes</li>
+        <li><span>04</span>An ending that leaves a question</li>
+    </ul>''', unsafe_allow_html=True)
     st.caption("Script-based editorial assessment. Delivery and precise timing need footage review.")
 
 sources, parse_errors, results = [], [], []

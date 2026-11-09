@@ -5,3 +5,27 @@ fileWatcherType = "poll"
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#285340"
+backgroundColor = "#f3f0e7"
+secondaryBackgroundColor = "#fcfaf4"
+textColor = "#293a30"
+font = "sans-serif"
+borderColor = "#d8d8ca"
+codeBackgroundColor = "#eae7dc"
+codeTextColor = "#293a30"
+dataframeHeaderBackgroundColor = "#e5e6d9"
+dataframeHeaderTextColor = "#203c32"
+baseRadius = "0.375rem"
+buttonRadius = "0.375rem"
+showWidgetBorder = true
+showSidebarBorder = true
+
+[theme.sidebar]
+backgroundColor = "#203c32"
+secondaryBackgroundColor = "#2d4a3c"
+textColor = "#f2f0df"
+primaryColor = "#dfbd80"
+borderColor = "#49604d"
