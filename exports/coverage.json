@@ -1,0 +1,505 @@
+{
+  "rows": [
+    {
+      "episode": 1,
+      "episode_id": "ep-001",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-001-ec0f2cacc8",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 2,
+      "episode_id": "ep-002",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-002-3ae595ac64",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 3,
+      "episode_id": "ep-003",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 2,
+      "best_available_candidate": "ep-003-b5abe64e2a",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 4,
+      "episode_id": "ep-004",
+      "status": "has_qualified",
+      "candidates": 3,
+      "qualified": 1,
+      "best_available_candidate": "ep-004-f5a9abec2e",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 5,
+      "episode_id": "ep-005",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-005-1939504cea",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 6,
+      "episode_id": "ep-006",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-006-7353879491",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 7,
+      "episode_id": "ep-007",
+      "status": "needs_review",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-007-def5467542",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 8,
+      "episode_id": "ep-008",
+      "status": "no_qualifying_candidate",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-008-a27a1dd4c1",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 9,
+      "episode_id": "ep-009",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-009-5528ed2575",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 10,
+      "episode_id": "ep-010",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-010-200beae62a",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 11,
+      "episode_id": "ep-011",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-011-373804d767",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 12,
+      "episode_id": "ep-012",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-012-52f22135ea",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 13,
+      "episode_id": "ep-013",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-013-752f70c825",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 14,
+      "episode_id": "ep-014",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-014-19f3068f7c",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 15,
+      "episode_id": "ep-015",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 2,
+      "best_available_candidate": "ep-015-926022384a",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 16,
+      "episode_id": "ep-016",
+      "status": "has_qualified",
+      "candidates": 1,
+      "qualified": 1,
+      "best_available_candidate": "ep-016-f828198782",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 17,
+      "episode_id": "ep-017",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-017-92fc6350e4",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 18,
+      "episode_id": "ep-018",
+      "status": "has_qualified",
+      "candidates": 3,
+      "qualified": 1,
+      "best_available_candidate": "ep-018-073dde50d6",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 19,
+      "episode_id": "ep-019",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-019-a4d7a2946a",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 20,
+      "episode_id": "ep-020",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-020-3c1a4276a2",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 21,
+      "episode_id": "ep-021",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-021-12a9d2d875",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 22,
+      "episode_id": "ep-022",
+      "status": "has_qualified",
+      "candidates": 1,
+      "qualified": 1,
+      "best_available_candidate": "ep-022-317822d44f",
+      "best_available_status": "qualified",
+      "source_warnings": "ep-022-b0023 extends outside its declared scene"
+    },
+    {
+      "episode": 23,
+      "episode_id": "ep-023",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-023-1abbf1866f",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 24,
+      "episode_id": "ep-024",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-024-05e5661b49",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 25,
+      "episode_id": "ep-025",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-025-0d21bfea35",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 26,
+      "episode_id": "ep-026",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-026-8566520fa7",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 27,
+      "episode_id": "ep-027",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-027-3fe9e5c630",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 28,
+      "episode_id": "ep-028",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-028-94d05dee6e",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 29,
+      "episode_id": "ep-029",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-029-0d7b6c8899",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 30,
+      "episode_id": "ep-030",
+      "status": "needs_review",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-030-b1d6228a0d",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 31,
+      "episode_id": "ep-031",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-031-d6ede20347",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 32,
+      "episode_id": "ep-032",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 2,
+      "best_available_candidate": "ep-032-8edd11e531",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 33,
+      "episode_id": "ep-033",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-033-a0d09eaa97",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 34,
+      "episode_id": "ep-034",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-034-3b8a473a9c",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 35,
+      "episode_id": "ep-035",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-035-9f69f8e068",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 36,
+      "episode_id": "ep-036",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-036-63c0473ba1",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 37,
+      "episode_id": "ep-037",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-037-1204cd27b7",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 38,
+      "episode_id": "ep-038",
+      "status": "no_qualifying_candidate",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-038-1267562750",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 39,
+      "episode_id": "ep-039",
+      "status": "no_qualifying_candidate",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-039-cff9e57866",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 40,
+      "episode_id": "ep-040",
+      "status": "no_qualifying_candidate",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-040-98b716d194",
+      "best_available_status": "rejected",
+      "source_warnings": ""
+    },
+    {
+      "episode": 41,
+      "episode_id": "ep-041",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-041-50948f441e",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 42,
+      "episode_id": "ep-042",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-042-0d4d6b700f",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 43,
+      "episode_id": "ep-043",
+      "status": "has_qualified",
+      "candidates": 3,
+      "qualified": 1,
+      "best_available_candidate": "ep-043-78ff15dc2f",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 44,
+      "episode_id": "ep-044",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-044-036f8d145e",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 45,
+      "episode_id": "ep-045",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-045-e75ff6bb69",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 46,
+      "episode_id": "ep-046",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-046-5d110ab880",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 47,
+      "episode_id": "ep-047",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-047-bd23c6ffd2",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 48,
+      "episode_id": "ep-048",
+      "status": "has_qualified",
+      "candidates": 2,
+      "qualified": 1,
+      "best_available_candidate": "ep-048-2623ea2a82",
+      "best_available_status": "qualified",
+      "source_warnings": ""
+    },
+    {
+      "episode": 49,
+      "episode_id": "ep-049",
+      "status": "needs_review",
+      "candidates": 2,
+      "qualified": 0,
+      "best_available_candidate": "ep-049-3d01c24675",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    },
+    {
+      "episode": 50,
+      "episode_id": "ep-050",
+      "status": "needs_review",
+      "candidates": 1,
+      "qualified": 0,
+      "best_available_candidate": "ep-050-763dea590e",
+      "best_available_status": "needs_review",
+      "source_warnings": ""
+    }
+  ],
+  "parse_errors": []
+}
